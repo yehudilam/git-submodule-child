@@ -31,11 +31,14 @@ jobs:
       - name: print gitmodules
         run: cat .gitmodules
 
-      - name: 'Update submodules'
-        run: |   
-          git pull --recurse-submodules
-          git submodule update --init --recursive --remote 
-          git submodule sync                       
+      - name: git pull
+        run: git pull --recurse-submodules
+          
+      - name: submodule update
+        run: git submodule update --init --recursive --remote 
+
+      - name: git submodule sync
+        run: git submodule sync                       
 
       - name: checkout submodule ${{ github.HEAD_REF }} branch
         run: git switch ${{ github.HEAD_REF }}   # checkout the target branch.
