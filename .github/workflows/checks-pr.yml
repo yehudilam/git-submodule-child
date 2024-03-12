@@ -21,7 +21,12 @@ jobs:
         run: git submodule update --init
       
       - name: update submodule branch
-        run: git config --file=.gitmodules submodule.child.branch ${{ github.HEAD_REF }} 
+        run: |
+          git config --file=.gitmodules submodule.child.branch ${{ github.HEAD_REF }} 
+          git config --file=.gitmodules submodule.child.url git@github.com:yehudilam/git-submodule-child.git
+
+      - name: update submodule branch
+        run: git config --file=.gitmodules submodule."git-submodule-child".branch ${{ github.HEAD_REF }} 
 
       - name: print gitmodules
         run: cat .gitmodules
