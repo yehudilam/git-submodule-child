@@ -24,6 +24,9 @@ jobs:
       #     path: './git-submodule-child'
       #     ref: ${{ github.HEAD_REF }}
 
+      - name: 'Submodule git fetch'
+        run: git submodule foreach git fetch
+
       - name: 'Submodule git status'
         run: git submodule foreach git status
 
