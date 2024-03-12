@@ -21,11 +21,16 @@ jobs:
         run: git submodule update --init
       
       - name: update submodule branch
-        run: |
-           git config --file=.gitmodules submodule."git-submodule-child".branch ${{ github.HEAD_REF }} 
-           git pull --recurse-submodules
-           git submodule sync                       
-           git submodule update --init --recursive --remote 
+        run: git config --file=.gitmodules submodule.child.branch ${{ github.HEAD_REF }} 
+
+      - name: print gitmodules
+        run: cat .gitmodules
+
+      - name: 'Update submodules'
+        run: |   
+          git pull --recurse-submodules
+          git submodule sync                       
+          git submodule update --init --recursive --remote 
 
       - name: checkout submodule ${{ github.HEAD_REF }} branch
         run: git switch ${{ github.HEAD_REF }}   # checkout the target branch.
