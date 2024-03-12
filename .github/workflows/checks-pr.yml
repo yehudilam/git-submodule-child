@@ -22,9 +22,9 @@ jobs:
       
       - name: update submodule branch
         run: |
-           git config --file=.gitmodules submodule.Submod.branch ${{ github.HEAD_REF }}  # change branch to 'B1' branch
-           git submodule sync                        # sync
-           git submodule update --init --recursive --remote   # pull the submodule
+           git config --file=.gitmodules submodule.git-submodule-child.branch ${{ github.HEAD_REF }} 
+           git submodule sync                       
+           git submodule update --init --recursive --remote 
 
       - name: checkout submodule ${{ github.HEAD_REF }} branch
         run: git switch ${{ github.HEAD_REF }}   # checkout the target branch.
