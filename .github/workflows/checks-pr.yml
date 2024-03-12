@@ -20,14 +20,16 @@ jobs:
       - name: 'init sub modules'
         run: git submodule update --init
       
-      - name: 'Submodule git fetch'
-        run: git submodule foreach --recursive git fetch
-      
-      - name: 'Submodule git branches'
-        run: git submodule foreach --recursive git branch
+      - name: update submodule branch
+        run: |
+           git config --file=.gitmodules submodule.Submod.branch ${{ github.REF }}  # change branch to 'B1' branch
+           git submodule sync                        # sync
+           git submodule update --init --recursive --remote   # pull the submodule
 
-      - name: 'Submodule switch branch'
-        run: git submodule foreach --recursive git switch submodule-2
+      - name: checkout submodule ${{ github.REF }} branch
+        run: |
+          cd ticket7    # go to submodule repo
+          git checkout -b ${{ github.REF }} origin/${{ github.REF }}   # checkout the target branch.
 
       # - name: 'Checkout submodule'
       #   uses: actions/checkout@v4
