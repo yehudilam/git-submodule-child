@@ -30,6 +30,9 @@ jobs:
       - name: 'Submodule git status'
         run: git submodule foreach --recursive git status
 
+      - name: 'Submodule git branches'
+        run: git submodule foreach --recursive git branch
+
       - name: 'Checkout submodule feature branch'
         run: git submodule foreach --recursive git switch ${{ github.HEAD_REF }}
 
