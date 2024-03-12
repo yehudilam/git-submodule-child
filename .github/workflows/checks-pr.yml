@@ -8,11 +8,46 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: 'Checkout'
+      - name: 'Checkout repository on branch: ${{ github.HEAD_REF }}'
+        run: echo "${{ github.HEAD_REF }}"
+
+      - name: 'Checkout parent'
         uses: actions/checkout@v4
         with:
           repository: 'yehudilam/git-submodule-parent'
-          submodules: 'recursive'
+          submodules: recursive
+
+      - name: 'init sub modules'
+        run: git submodule update --init
+      
+      - name: update submodule branch
+        run: |
+          git config --file=.gitmodules submodule.child.branch ${{ github.HEAD_REF }} 
+          git config --file=.gitmodules submodule.child.url git@github.com:yehudilam/git-submodule-child.git
+
+      - name: update submodule branch
+        run: git config --file=.gitmodules submodule."git-submodule-child".branch ${{ github.HEAD_REF }} 
+
+      - name: print gitmodules
+        run: cat .gitmodules
+
+      - name: git pull
+        run: git pull --recurse-submodules
+          
+      - name: submodule update
+        run: git submodule update --init --recursive --remote 
+
+      - name: git submodule sync
+        run: git submodule sync                       
+
+      - name: checkout submodule ${{ github.HEAD_REF }} branch
+        run: git switch ${{ github.HEAD_REF }}   # checkout the target branch.
 
       - name: 'Install Dependencies'
         run: yarn install
+
+      - name: "Lint"
+        run: yarn lint
+
+      - name: "Test"
+        run: yarn test
