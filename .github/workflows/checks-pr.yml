@@ -26,6 +26,9 @@ jobs:
       - name: 'Submodule git branches'
         run: git submodule foreach --recursive git branch
 
+      - name: 'Submodule switch branch'
+        run: git submodule foreach --recursive git switch submodule-2
+
       # - name: 'Checkout submodule'
       #   uses: actions/checkout@v4
       #   with:
