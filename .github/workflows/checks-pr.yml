@@ -25,13 +25,13 @@ jobs:
       #     ref: ${{ github.HEAD_REF }}
 
       - name: 'Submodule git fetch'
-        run: git submodule foreach git fetch
+        run: git submodule foreach --recursive git fetch
 
       - name: 'Submodule git status'
-        run: git submodule foreach git status
+        run: git submodule foreach --recursive git status
 
       - name: 'Checkout submodule feature branch'
-        run: git submodule foreach git switch ${{ github.HEAD_REF }}
+        run: git submodule foreach --recursive git switch ${{ github.HEAD_REF }}
 
       - name: 'Install Dependencies'
         run: yarn install
