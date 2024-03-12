@@ -27,9 +27,7 @@ jobs:
            git submodule update --init --recursive --remote   # pull the submodule
 
       - name: checkout submodule ${{ github.HEAD_REF }} branch
-        run: |
-          cd ticket7    # go to submodule repo
-          git checkout -b ${{ github.HEAD_REF }} origin/${{ github.HEAD_REF }}   # checkout the target branch.
+        run: git checkout -b ${{ github.HEAD_REF }} origin/${{ github.HEAD_REF }}   # checkout the target branch.
 
       - name: 'Install Dependencies'
         run: yarn install
