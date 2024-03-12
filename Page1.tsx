@@ -1,7 +1,9 @@
-import {View} from 'react-native';
+import {View, Text} from 'react-native';
 const Page1 = () => {
   return (
-    <View>page1!</View>
+    <View>
+      <Text>page1!</Text>
+    </View>
   );
 };
 
