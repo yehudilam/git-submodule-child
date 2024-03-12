@@ -8,11 +8,26 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: 'Checkout'
+      - name: 'Checkout repository on branch: ${{ github.REF }}'
+        run: echo "${{ github.HEAD_REF }}"
+
+      - name: 'Checkout parent'
         uses: actions/checkout@v4
         with:
           repository: 'yehudilam/git-submodule-parent'
-          submodules: 'recursive'
+
+      - name: 'Checkout submodule'
+        uses: actions/checkout@v4
+        with:
+          repository: 'yehudilam/git-submodule-child'
+          path: './git-submodule-child'
+          ref: ${{ github.HEAD_REF }}
 
       - name: 'Install Dependencies'
         run: yarn install
+
+      - name: "Lint"
+        run: yarn lint
+
+      - name: "Test"
+        run: yarn test
