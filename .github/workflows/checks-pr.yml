@@ -17,6 +17,15 @@ jobs:
           repository: 'yehudilam/git-submodule-parent'
           submodules: true
 
+      - name: 'init sub modules'
+        run: git submodule update --init
+      
+      - name: 'Submodule git fetch'
+        run: git submodule foreach --recursive git fetch
+      
+      - name: 'Submodule git branches'
+        run: git submodule foreach --recursive git branch
+
       # - name: 'Checkout submodule'
       #   uses: actions/checkout@v4
       #   with:
@@ -24,29 +33,29 @@ jobs:
       #     path: './git-submodule-child'
       #     ref: ${{ github.HEAD_REF }}
 
-      - name: 'Submodule git fetch'
-        run: git submodule foreach --recursive git fetch
+      # - name: 'Submodule git fetch'
+      #   run: git submodule foreach --recursive git fetch
 
-      - name: 'Submodule git status'
-        run: git submodule foreach --recursive git status
+      # - name: 'Submodule git status'
+      #   run: git submodule foreach --recursive git status
 
-      - name: 'Submodule git branches'
-        run: git submodule foreach --recursive git branch
+      # - name: 'Submodule git branches'
+      #   run: git submodule foreach --recursive git branch
 
-      - name: 'Submodule git submodule update'
-        run: git submodule update --recursive --remote
+      # - name: 'Submodule git submodule update'
+      #   run: git submodule update --recursive --remote
 
-      - name: 'Submodule git branches again'
-        run: git submodule foreach --recursive git branch
+      # - name: 'Submodule git branches again'
+      #   run: git submodule foreach --recursive git branch
 
-      - name: 'git pull --recurse-submodules'
-        run: git pull --recurse-submodules
+      # - name: 'git pull --recurse-submodules'
+      #   run: git pull --recurse-submodules
 
-      - name: 'Submodule git branches again(2)'
-        run: git submodule foreach --recursive git branch
+      # - name: 'Submodule git branches again(2)'
+      #   run: git submodule foreach --recursive git branch
 
-      - name: 'Checkout submodule feature branch'
-        run: git submodule foreach --recursive git switch ${{ github.HEAD_REF }}
+      # - name: 'Checkout submodule feature branch'
+      #   run: git submodule foreach --recursive git switch ${{ github.HEAD_REF }}
 
       - name: 'Install Dependencies'
         run: yarn install
