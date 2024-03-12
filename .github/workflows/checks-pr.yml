@@ -39,6 +39,12 @@ jobs:
       - name: 'Submodule git branches again'
         run: git submodule foreach --recursive git branch
 
+      - name: 'git pull --recurse-submodules'
+        run: git pull --recurse-submodules
+
+      - name: 'Submodule git branches again(2)'
+        run: git submodule foreach --recursive git branch
+
       - name: 'Checkout submodule feature branch'
         run: git submodule foreach --recursive git switch ${{ github.HEAD_REF }}
 
