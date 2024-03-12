@@ -9,7 +9,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: 'Checkout repository on branch: ${{ github.REF }}'
-        uses: echo "${{ github.HEAD_REF }}"
+        run: echo "${{ github.HEAD_REF }}"
 
       - name: 'Checkout parent'
         uses: actions/checkout@v4
