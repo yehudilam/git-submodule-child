@@ -22,7 +22,7 @@ jobs:
       
       - name: update submodule branch
         run: |
-           git config --file=.gitmodules submodule.git-submodule-child.branch ${{ github.HEAD_REF }} 
+           git config --file=.gitmodules submodule."git-submodule-child".branch ${{ github.HEAD_REF }} 
            git submodule sync                       
            git submodule update --init --recursive --remote 
 
