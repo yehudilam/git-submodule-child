@@ -1,4 +1,4 @@
-import Page3 from 'Page3';
+import Page3 from '../Page3';
 import {View, Text} from 'react-native';
 
 const Page2 = () => {
