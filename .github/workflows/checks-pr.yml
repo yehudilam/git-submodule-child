@@ -34,8 +34,8 @@ jobs:
       - name: 'Update submodules'
         run: |   
           git pull --recurse-submodules
-          git submodule sync                       
           git submodule update --init --recursive --remote 
+          git submodule sync                       
 
       - name: checkout submodule ${{ github.HEAD_REF }} branch
         run: git switch ${{ github.HEAD_REF }}   # checkout the target branch.
