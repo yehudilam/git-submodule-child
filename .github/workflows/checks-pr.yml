@@ -33,10 +33,10 @@ jobs:
       - name: 'Submodule git branches'
         run: git submodule foreach --recursive git branch
 
-      - name: 'Submodule git branches'
-        run: git submodule update --recursive
+      - name: 'Submodule git submodule update'
+        run: git submodule update --recursive --remote
 
-      - name: 'Submodule git branches'
+      - name: 'Submodule git branches again'
         run: git submodule foreach --recursive git branch
 
       - name: 'Checkout submodule feature branch'
